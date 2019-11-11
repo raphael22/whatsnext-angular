@@ -33,11 +33,11 @@ export class RouterService {
     }
   }
 
-  loadRoute(moduleDef, module) {
+  loadRoute(moduleDef: IModule, module) {
     console.log('RouterService::loadRoute', moduleDef, module)
     const route: Route = {
       path: moduleDef.url,
-      loadChildren: () => module[moduleDef.module]
+      loadChildren: () => module.default
     }
 
     this.router.config.push(route)

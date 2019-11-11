@@ -5,6 +5,7 @@
     "target": "es2015",
     "declaration": true,
     "inlineSources": true,
+    "importHelpers": false,
     "types": [],
     "lib": [
       "dom",
@@ -15,6 +16,8 @@
     "skipTemplateCodegen": true,
     "strictMetadataEmit": true,
     "enableResourceInlining": true,
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true,
     "enableIvy": false
   },
   "exclude": [

@@ -41,7 +41,7 @@ export class ZoneComponent implements AfterViewInit, OnDestroy {
 
   private loadComponent(moduleDef: IModule, module) {
     console.log('ZoneComponent::loadComponent', moduleDef, module)
-    this.compiler.compileModuleAndAllComponentsAsync(module[moduleDef.module])
+    this.compiler.compileModuleAndAllComponentsAsync(module.default)
       .then((compiled) => {
         const moduleRef = compiled.ngModuleFactory.create(this.injector);
         const components = compiled.componentFactories

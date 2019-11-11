@@ -15,7 +15,7 @@ const debug = process.argv.find(arg => arg.match(/debug/gi));
 console.log('Module Name:', moduleName);
 console.log('Debug:', debug ? true : false);
 const input = {
-    input: `dist/${moduleName}/esm2015/${moduleName}.js`,
+    input: `dist/${moduleName}/esm2015/index.js`,
     plugins: [
         rollup_plugin_peer_deps_external_1.default({
             packageJsonPath: path.resolve(`dist/${moduleName}/package.json`)

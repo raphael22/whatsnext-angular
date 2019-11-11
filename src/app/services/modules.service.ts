@@ -3,7 +3,6 @@ import { ReplaySubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 export interface IModule {
-  module: string,
   path: string,
   zone?: string,
   url?: string

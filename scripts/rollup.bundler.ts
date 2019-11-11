@@ -1,5 +1,5 @@
 import * as path from 'path';
-import {rollup} from 'rollup';
+import { rollup } from 'rollup';
 import commonjs from 'rollup-plugin-commonjs';
 import resolve from 'rollup-plugin-node-resolve';
 import babel from 'rollup-plugin-babel'
@@ -15,8 +15,8 @@ console.log('Module Name:', moduleName)
 console.log('Debug:', debug ? true : false)
 
 const input = {
-    input: `dist/${moduleName}/esm2015/${moduleName}.js`,
-    plugins: [ 
+    input: `dist/${moduleName}/esm2015/index.js`,
+    plugins: [
         peerDepsExternal({
             packageJsonPath: path.resolve(`dist/${moduleName}/package.json`)
         }),
@@ -38,7 +38,7 @@ const input = {
         file: `dist/${moduleName}/${moduleName}.js`
     })
 
-    
+
 
     input.plugins.push(...[
         terser(),

@@ -1,0 +1,14 @@
+{
+    "modules": [
+        {
+            "zone": "1",
+            "url": "react",
+            "path": "assets/modules/module-react/module-react.js"
+        },
+        {
+            "zone": "2",
+            "url": "vue",
+            "path": "assets/modules/module-vue/module-vue.js"
+        }
+    ]
+}

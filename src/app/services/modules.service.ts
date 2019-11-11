@@ -16,7 +16,7 @@ export class ModulesService {
   private modules: IModule[] = [];
 
   constructor(private http: HttpClient) {
-    this.http.get('./assets/modules/modules.json').toPromise()
+    this.http.get('./assets/api/modules.json').toPromise()
       .then((json: any) => {
         this.modules = json.modules;
         console.log('ModulesService', this.modules)

@@ -1,12 +1,8 @@
-import { Component, Compiler, Injector, ViewChild, ViewContainerRef, ElementRef, AfterViewInit } from '@angular/core';
-import { Router, Route, RouterEvent } from '@angular/router';
-import { ModulesService } from './modules.service';
-declare const SystemJS
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  templateUrl: './app.component.html'
 })
 export class AppComponent {
 }

@@ -21,9 +21,14 @@ export class RouterService {
   loadModules(modules: IModule[]) {
     for (const moduleDef of modules) {
       if (moduleDef.url) {
-        SystemJS.import(moduleDef.path).then((module) => {
-          this.loadRoute(moduleDef, module)
-        })
+        try {
+          SystemJS.import(moduleDef.path).then((module) => {
+            this.loadRoute(moduleDef, module)
+          })
+        }
+        catch (error) {
+          console.error('RouterService::loadRoute', moduleDef, error)
+        }
       }
     }
   }

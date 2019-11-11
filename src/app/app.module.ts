@@ -1,11 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Compiler, COMPILER_OPTIONS, CompilerFactory } from '@angular/core';
 import { JitCompilerFactory } from '@angular/platform-browser-dynamic';
+import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { RouterModule } from '@angular/router';
 import { ZoneComponent } from './zone.component';
-import { RouterService } from './router.service';
+import { RouterService } from './services/router.service';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { RouterService } from './router.service';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     RouterModule.forRoot([], { useHash: true })
   ],
   providers: [

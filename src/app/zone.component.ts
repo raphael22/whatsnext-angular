@@ -1,7 +1,7 @@
-import { Component, Compiler, Injector, ViewChild, ViewContainerRef, ElementRef, AfterViewInit, Input, OnDestroy } from '@angular/core';
+import { Component, Compiler, Injector, ViewChild, ViewContainerRef, ElementRef, AfterViewInit, Input, OnDestroy, ComponentRef } from '@angular/core';
 import { Router, Route, RouterEvent } from '@angular/router';
 import { filter } from 'rxjs/operators';
-import { ModulesService, IModule } from './modules.service';
+import { ModulesService, IModule } from './services/modules.service';
 import { Subscription } from 'rxjs';
 declare const SystemJS
 
@@ -27,23 +27,32 @@ export class ZoneComponent implements AfterViewInit, OnDestroy {
   loadModules(modules: IModule[]) {
     for (const moduleDef of modules) {
       if (moduleDef.zone && moduleDef.zone == this.zone) {
-        SystemJS.import(moduleDef.path).then((module) => {
-          this.loadComponent(moduleDef, module)
-        })
+        try {
+          SystemJS.import(moduleDef.path).then((module) => {
+            this.loadComponent(moduleDef, module)
+          })
+        }
+        catch (error) {
+          console.error('ZoneComponent::loadComponent', moduleDef, error)
+        }
       }
     }
   }
 
-  private loadComponent(moduleDef, module) {
+  private loadComponent(moduleDef: IModule, module) {
     console.log('ZoneComponent::loadComponent', moduleDef, module)
     this.compiler.compileModuleAndAllComponentsAsync(module[moduleDef.module])
       .then((compiled) => {
-        let moduleRef = compiled.ngModuleFactory.create(this.injector);
+        const moduleRef = compiled.ngModuleFactory.create(this.injector);
         const components = compiled.componentFactories
-        let factory = compiled.componentFactories[components.length - 1];
+        const factory = compiled.componentFactories[components.length - 1];
+        console.log('ZoneComponent::loadedComponent', moduleRef, components)
         if (factory) {
-          let component = this.root.createComponent(factory);
-          let instance = component.instance;
+          const component: ComponentRef<any> = this.root.createComponent(factory);
+          const instance = component.instance;
+          component.onDestroy(() => {
+            moduleRef.destroy()
+          })
         }
       });
   }

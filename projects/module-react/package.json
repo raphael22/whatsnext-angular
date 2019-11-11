@@ -1,0 +1,11 @@
+{
+  "name": "module-react",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/*": "^9.0.0-rc.1",
+    "tslib": "^1.10.0"
+  },
+  "dependencies": {
+    "react": "^16.11.0"
+  }
+}

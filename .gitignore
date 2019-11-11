@@ -5,6 +5,7 @@
 /tmp
 /out-tsc
 /src/assets/modules/**/*
+!/src/assets/modules/**/.gitkeep
 /projects/**/node_modules
 # Only exists if Bazel was run
 /bazel-out
